@@ -1,101 +1,87 @@
 import React, { Component } from 'react';
+import { withFormik } from 'formik';
 import FormErrors from './FormErrors';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField';
 
 class Form extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            login: '',
-            password: '',
-            formErrors: { login: '', password: '' },
-            loginValid: false,
-            passwordValid: false,
-            formValid: false
-        };
-    }
-
-    handleUserInput = e => {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState({ [name]: value }, () => {
-            this.validateField(name, value);
-        });
-    };
-
-    validateField(fieldName, value) {
-        let fieldValidationErrors = this.state.formErrors;
-        let loginValid = this.state.loginValid;
-        let passwordValid = this.state.passwordValid;
-
-        switch (fieldName) {
-            case 'login':
-                loginValid = value.length > 0;
-                fieldValidationErrors.login = loginValid ? '' : 'Введите логин';
-                break;
-            case 'password':
-                passwordValid = value.length >= 8;
-                fieldValidationErrors.password = passwordValid ? '' : 'Не менее 8 символов';
-                break;
-            default:
-                break;
-        }
-        this.setState(
-            {
-                formErrors: fieldValidationErrors,
-                loginValid: loginValid,
-                passwordValid: passwordValid
-            },
-            this.validateForm
-        );
-    }
-
-    validateForm() {
-        this.setState({
-            formValid: this.state.loginValid && this.state.passwordValid
-        });
-    }
-
     render() {
+        const {
+            touched,
+            values,
+            errors,
+            handleBlur,
+            handleChange,
+            handleSubmit
+        } = this.props;
+
         return (
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2>Войти</h2>
                 <div>
                     <TextField
-                        error={this.state.formErrors.login}
-                        name='login'
                         label="Логин"
-                        placeholder='login'
+                        name="login"
+                        placeholder="login"
                         margin="normal"
-                        helperText={this.state.formErrors.login}
-                        value={this.state.login}
-                        onChange={this.handleUserInput}
+                        value={values.login}
+                        error={touched.login && !!errors.login}
+                        helperText={touched.login && errors.login}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                 </div>
                 <div>
                     <TextField
-                        error={this.state.formErrors.password}
                         label="Пароль"
                         type="password"
-                        name='password'
-                        helperText={this.state.formErrors.password}
+                        name="password"
                         autoComplete="current-password"
                         margin="normal"
-                        value={this.state.password}
-                        onChange={this.handleUserInput}
+                        value={values.password}
+                        error={touched.password && !!errors.password}
+                        helperText={touched.password && errors.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                 </div>
-                <div>
-                    <FormErrors formErrors={this.state.formErrors} />
-                </div>
-                <Button type="submit" disabled={!this.state.formValid}>
-                    Войти
-                </Button>
+                <Button type="submit">Войти</Button>
             </form>
         );
     }
 }
 
-export default Form;
+export default withFormik({
+    mapPropsToValues: () => ({
+        login: '',
+        password: ''
+    }),
+    validate: values => {
+        const errors = {};
+
+        Object.keys(values).forEach(fieldName => {
+            const value = values[fieldName];
+
+            switch (fieldName) {
+                case 'login':
+                    if (value.length <= 0) {
+                        errors.login = 'Введите логин';
+                    }
+                    break;
+                case 'password':
+                    if (value.length < 8) {
+                        errors.password = 'Не менее 8 символов';
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        return errors;
+    },
+    handleSubmit: (values) => {
+        console.log(values);
+    }
+})(Form);
