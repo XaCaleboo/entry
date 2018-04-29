@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
+    "@mdi/font": "^2.3.54",
     "formik": "^0.11.11",
     "material-ui": "^1.0.0-beta.43",
     "npm": "^5.8.0",

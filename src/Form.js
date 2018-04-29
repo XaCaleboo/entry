@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withFormik } from 'formik';
-import FormErrors from './FormErrors';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -13,7 +12,7 @@ class Form extends Component {
             errors,
             handleBlur,
             handleChange,
-            handleSubmit
+            handleSubmit,
         } = this.props;
 
         return (
@@ -82,6 +81,6 @@ export default withFormik({
         return errors;
     },
     handleSubmit: (values) => {
-        console.log(values);
-    }
+        console.log(values);  
+    },
 })(Form);
