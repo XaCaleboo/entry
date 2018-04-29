@@ -162,7 +162,7 @@ const styles = theme => ({
 });
 
 
-class MiniDrawer extends React.Component {
+class Main extends React.Component {
   state = {
     open: false,
     currency: 'EUR',
@@ -302,9 +302,9 @@ class MiniDrawer extends React.Component {
   }
 }
 
-MiniDrawer.propTypes = {
+Main.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withStyles(styles, { withTheme: true })(Main);

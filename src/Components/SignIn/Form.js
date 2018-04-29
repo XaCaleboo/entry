@@ -4,8 +4,7 @@ import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {Typography} from 'material-ui';
-import Pay from './Pay';
+import { Typography } from 'material-ui';
 import { withStyles } from "material-ui/styles";
 
 const styles = theme => ({
@@ -31,48 +30,43 @@ class Form extends Component {
         return (
             <form onSubmit={handleSubmit}>
                 <Typography variant="headline">Вход</Typography>
-                <div>
-                    <TextField
-                        label="Логин"
-                        name="login"
-                        placeholder="Логин"
-                        margin="normal"
-                        fullWidth
-                        value={values.login}
-                        error={touched.login && !!errors.login}
-                        helperText={touched.login && errors.login}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </div>
-                <div>
-                    <TextField
-                        label="Пароль"
-                        type="password"
-                        name="password"
-                        autoComplete="current-password"
-                        margin="normal"
-                        fullWidth
-                        value={values.password}
-                        error={touched.password && !!errors.password}
-                        helperText={touched.password && errors.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </div>
+                <TextField
+                    label="Логин"
+                    name="login"
+                    placeholder="Логин"
+                    margin="normal"
+                    fullWidth
+                    value={values.login}
+                    error={touched.login && !!errors.login}
+                    helperText={touched.login && errors.login}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                <TextField
+                    label="Пароль"
+                    type="password"
+                    name="password"
+                    autoComplete="current-password"
+                    margin="normal"
+                    fullWidth
+                    value={values.password}
+                    error={touched.password && !!errors.password}
+                    helperText={touched.password && errors.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
                 <div className={classes.buttonCenter}>
-                <Button 
-                    type="submit"
-                    className={classes.button}
-                    variant="raised"
-                    color="primary"
-                    type="submit"
-                    align="center"
-                >
-                    Войти
-                </Button>
+                    <Button 
+                        type="submit"
+                        className={classes.button}
+                        variant="raised"
+                        color="primary"
+                        type="submit"
+                        align="center"
+                    >
+                        Войти
+                    </Button>
                 </div>
-                
             </form>
         );
     }
