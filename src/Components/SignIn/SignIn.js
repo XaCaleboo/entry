@@ -6,10 +6,14 @@ import Form from './Form'
 
 const styles = theme => ({
   container: {
+    backgroundColor: '#eee',
     height: '100%',
   },
   paper: {
     padding: '32px 16px',
+  },
+  form: {
+    width: '450px',
   }
 });
 
@@ -18,19 +22,16 @@ class SignIn extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid container
-            spacing={24}
-            direction={'row'}
-            justify={'center'}
-            alignItems={'center'}
-            className={classes.container}
+      <Grid
+        container
+        direction={'row'}
+        justify={'center'}
+        alignItems={'center'}
+        className={classes.container}
       >
-        <Grid item 
-              xs={12} 
-              sm={6}
-              md={5}
-              lg={4}
-              xl={3}
+        <Grid
+          item 
+          className={classes.form}
         >
           <Paper className={classes.paper}>
             <Form />
