@@ -21,8 +21,16 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
+
 const drawerWidth = 240;
 
+const multipling = {
+  'EUR': 1,
+  '1 уровень': 2,
+  '2 уровень': 2.2,
+  '3 уровень': 2.5,
+  '4 уровень': 3
+}
 const currencies = [
   {
     value: '1 уровень',
@@ -158,6 +166,8 @@ class MiniDrawer extends React.Component {
   state = {
     open: false,
     currency: 'EUR',
+    potential: 0,
+    amount: 0
   };
 
   handleDrawerOpen = () => {
@@ -279,7 +289,7 @@ class MiniDrawer extends React.Component {
               <Typography component='p' className={classes.components}>
                   Потенциальный выигрыш:
                   <Typography component='p' className={classes.win}>
-                    200$
+                    {this.state.amount*multipling[this.state.currency]}$
                   </Typography>
               </Typography>
               <Button variant='raised' color='primary' className={classes.button}>
