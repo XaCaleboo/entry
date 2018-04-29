@@ -292,7 +292,7 @@ class MiniDrawer extends React.Component {
                     {this.state.amount*multipling[this.state.currency]}$
                   </Typography>
               </Typography>
-              <Button variant='raised' color='primary' className={classes.button}>
+              <Button variant='raised' color='primary' type="submit" className={classes.button}>
                 Оплатить</Button>
             </form>
           </Paper>
