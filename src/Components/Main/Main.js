@@ -1,35 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'material-ui/styles';
+import { Drawer, AppBar, Toolbar, Typography, Divider, IconButton, Chip, Input, Icon, Button, Paper, TextField, List } from 'material-ui';
 import MenuIcon from '@material-ui/icons/Menu';
-import { MenuList, MenuItem } from 'material-ui/Menu';
+import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Chip from 'material-ui/Chip';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Icon from 'material-ui/Icon';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-
+import { MenuList, MenuItem } from 'material-ui/Menu';
+import { InputLabel, InputAdornment } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
 const drawerWidth = 240;
 
 const multipling = {
   'EUR': 1,
   '1 уровень': 2,
-  '2 уровень': 2.2,
-  '3 уровень': 2.5,
-  '4 уровень': 3
+  '2 уровень': 2.5,
+  '3 уровень': 3,
 }
 const currencies = [
   {
@@ -43,11 +34,7 @@ const currencies = [
   {
     value: '3 уровень',
     label: '3 уровень',
-  },
-  {
-    value: '4 уровень',
-    label: '4 уровень',
-  },
+  }
 ];
 
 const styles = theme => ({
@@ -135,7 +122,9 @@ const styles = theme => ({
     },
   },
   primary: {},
-  icon: {},
+  icon: {
+    marginLeft: 8,
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -202,13 +191,6 @@ class Main extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-                <Chip label="Команда №1" className={classes.chip} />
-            </Typography>
-                <Button variant='raised' className={classes.button}>
-                  PayPass</Button>
-                <Button variant='raised' className={classes.button}>
-                3D Secure</Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -219,30 +201,28 @@ class Main extends React.Component {
           open={this.state.open}
         >
           <div className={classes.toolbar}>
-            <List>
-              <ListItem>
-                <ListItemText primary='Станция №1' />
-              </ListItem>
-            </List>
             <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
           <Divider />
-          <MenuList >
+          <MenuList>
               <MenuItem  className={classes.menuItem}>
                 <ListItemIcon className={classes.icon}>
-                <i className='material-icons'>attach_money</i></ListItemIcon>
+                  <AttachMoneyIcon />
+                </ListItemIcon>
                 <ListItemText primary='Оплата' classes={{ primary: classes.primary }} inset/>
               </MenuItem>
               <MenuItem  className={classes.menuItem}>
                 <ListItemIcon className={classes.icon}>
-                <i className='material-icons'>help_outline</i></ListItemIcon>
+                  <HelpOutlineIcon />
+                </ListItemIcon>
                 <ListItemText primary='Правила' classes={{ primary: classes.primary }} inset/>
               </MenuItem>
               <MenuItem className={classes.menuItem}>
                 <ListItemIcon className={classes.icon}>
-                <i className='material-icons'>info_outline</i></ListItemIcon>
+                  <InfoOutlineIcon />
+                </ListItemIcon>
                 <ListItemText primary='О программе' classes={{ primary: classes.primary }}/>
               </MenuItem>
           </MenuList>
