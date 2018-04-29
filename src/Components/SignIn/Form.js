@@ -9,6 +9,9 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
+  },
+  inputFixHeight: {
+    height: 68
   }
 });
 
@@ -38,6 +41,7 @@ class Form extends Component {
           helperText={touched.login && errors.login}
           onChange={handleChange}
           onBlur={handleBlur}
+          className={classes.inputFixHeight}
         />
         <TextField
           label="Пароль"
@@ -52,6 +56,7 @@ class Form extends Component {
           helperText={touched.password && errors.password}
           onChange={handleChange}
           onBlur={handleBlur}
+          className={classes.inputFixHeight}
         />
         <div className={classes.buttonCenter}>
           <Button 
